@@ -52,7 +52,7 @@ DATABASE_URL=sqlite:///instance/typing_jungle.db
 
 - Never commit `.env` or real credentials.
 - Use a long random `SECRET_KEY` outside local development.
-- Use PostgreSQL for a persistent production deployment.
+- Use PostgreSQL for a persistent production deployment; the free Render setup uses temporary SQLite storage.
 - `instance/` contains local runtime data and is not source code.
 
 ## Project structure
@@ -71,7 +71,7 @@ DATABASE_URL=sqlite:///instance/typing_jungle.db
 
 ## Production deployment
 
-The simplest hosting choice for this Flask MVP is **Render** or **Railway**. Both can deploy directly from GitHub.
+The simplest free hosting choice for this Flask MVP is a **Render free web service** deployed directly from GitHub.
 
 ```text
 Build command: pip install -r requirements.txt
@@ -85,7 +85,7 @@ pip install gunicorn
 pip freeze > requirements.txt
 ```
 
-Configure `SECRET_KEY` and a PostgreSQL `DATABASE_URL` in the hosting provider's environment settings. Do not run `python run.py` or Flask debug mode in production. Add a health check for `/` and configure database backups.
+The free setup generates `SECRET_KEY` automatically and uses SQLite. Render free services sleep when idle and their local filesystem is ephemeral, so accounts and results can be lost after redeploys or restarts. Use this option for demos only. For persistent user data, upgrade later to PostgreSQL and configure `DATABASE_URL`. Do not run `python run.py` or Flask debug mode in production. The Blueprint includes a health check for `/`.
 
 ## Development workflow
 
