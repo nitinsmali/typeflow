@@ -91,11 +91,8 @@ img {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #ff9f43, #ff6a3d);
-  color: white;
-  font-size: 0.7rem;
-  font-weight: 800;
   box-shadow: 0 8px 18px rgba(255, 130, 62, 0.3);
+  object-fit: cover;
 }
 
 .brand-name {

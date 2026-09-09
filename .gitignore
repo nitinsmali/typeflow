@@ -5,3 +5,9 @@ Telegram bot/
 ToDo-List/
 random-string-generator/
 translator-app/
+venv/
+__pycache__/
+*.pyc
+.env
+instance/*.db
+.DS_Store

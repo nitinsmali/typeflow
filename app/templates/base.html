@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}TypeFlow{% endblock %}</title>
     <meta name="description" content="TypeFlow helps you type better, type faster, and flow naturally." />
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
     <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
   </head>
@@ -12,7 +13,7 @@
     <header class="site-header">
       <div class="container nav-shell">
         <a class="brand" href="{{ url_for('main.index') }}" aria-label="TypeFlow home">
-          <span class="brand-mark">TF</span>
+          <img class="brand-mark" src="{{ url_for('static', filename='img/favicon.png') }}" alt="" />
           <span class="brand-name">TypeFlow</span>
         </a>
 
