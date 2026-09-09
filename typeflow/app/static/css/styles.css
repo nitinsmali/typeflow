@@ -685,7 +685,8 @@ textarea {
   line-height: 1.7;
   letter-spacing: 0.02em;
   white-space: pre-wrap;
-  word-break: break-word;
+  word-break: normal;
+  overflow-wrap: normal;
   scroll-behavior: smooth;
 }
 

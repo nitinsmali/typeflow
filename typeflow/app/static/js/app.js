@@ -366,7 +366,7 @@ function initPracticeFlow() {
           className += " current";
         }
 
-        const safeChar = char === " " ? "&nbsp;" : escapeHtml(char);
+        const safeChar = escapeHtml(char);
         return `<span class="${className}">${safeChar}</span>`;
       })
       .join("");
