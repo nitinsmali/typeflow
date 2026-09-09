@@ -10,6 +10,8 @@ function initStartModal() {
   const modal = document.getElementById("startModal");
   const openButton = document.getElementById("openStartModal");
   const startButton = document.getElementById("startChoiceButton");
+  const timedChoices = document.getElementById("timedChoices");
+  const pageChoices = document.getElementById("pageChoices");
   if (!modal || !openButton || !startButton) return;
 
   const closeModal = () => modal.classList.add("hidden");
@@ -17,11 +19,21 @@ function initStartModal() {
     document.querySelectorAll(`[data-start-choice="${button.dataset.startChoice}"]`).forEach((choice) => {
       choice.classList.toggle("active", choice === button);
     });
-    const activeMode = modal.querySelector('[data-start-choice="pages"].active');
+    if (button.dataset.startChoice === "mode") {
+      timedChoices.classList.toggle("hidden", button.dataset.value !== "timed");
+      pageChoices.classList.toggle("hidden", button.dataset.value !== "pages");
+      const firstOption = modal.querySelector(`[data-start-choice="${button.dataset.value}"]`);
+      if (firstOption) choose(firstOption);
+      return;
+    }
+    const activeMode = modal.querySelector('[data-start-choice="mode"].active');
+    const activePage = modal.querySelector('[data-start-choice="pages"].active');
     const activeTimed = modal.querySelector('[data-start-choice="timed"].active');
     const activeDifficulty = modal.querySelector('[data-start-choice="difficulty"].active');
-    const mode = activeMode ? "pages" : "timed";
-    const value = activeMode?.dataset.value || activeTimed?.dataset.value || "60";
+    const mode = activeMode?.dataset.value || "timed";
+    const value = mode === "pages"
+      ? activePage?.dataset.value || "1"
+      : activeTimed?.dataset.value || "60";
     const difficulty = activeDifficulty?.dataset.value || "easy";
     startButton.href = `/practice?mode=${mode}&value=${value}&difficulty=${difficulty}`;
   };

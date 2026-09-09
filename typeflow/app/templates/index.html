@@ -32,18 +32,25 @@
     <p class="eyebrow muted">Choose a lesson</p>
     <h2 id="startModalHeading">How do you want to practice?</h2>
     <div class="choice-section">
-      <span class="choice-label">Timed</span>
+      <span class="choice-label">Practice mode</span>
+      <div class="choice-grid mode-grid">
+        <button class="choice-card active" type="button" data-start-choice="mode" data-value="timed"><strong>Timed</strong><small>Practice against the clock</small></button>
+        <button class="choice-card" type="button" data-start-choice="mode" data-value="pages"><strong>Pages</strong><small>Complete a fixed lesson</small></button>
+      </div>
+    </div>
+    <div class="choice-section" id="timedChoices">
+      <span class="choice-label">Time</span>
       <div class="choice-grid">
         <button class="choice-card active" type="button" data-start-choice="timed" data-value="60"><strong>1 min</strong><small>Quick warm-up</small></button>
         <button class="choice-card" type="button" data-start-choice="timed" data-value="120"><strong>2 min</strong><small>Focused practice</small></button>
         <button class="choice-card" type="button" data-start-choice="timed" data-value="300"><strong>5 min</strong><small>Deep practice</small></button>
       </div>
     </div>
-    <div class="choice-section">
-      <span class="choice-label">Pages</span>
+    <div class="choice-section hidden" id="pageChoices">
+      <span class="choice-label">Lesson length</span>
       <div class="choice-grid pages-grid">
-        <button class="choice-card" type="button" data-start-choice="pages" data-value="1"><strong>1 page</strong><small>One clear goal</small></button>
-        <button class="choice-card" type="button" data-start-choice="pages" data-value="2"><strong>2 pages</strong><small>Keep the flow going</small></button>
+        <button class="choice-card active" type="button" data-start-choice="pages" data-value="1"><strong>1 page</strong><small>8 minute lesson</small></button>
+        <button class="choice-card" type="button" data-start-choice="pages" data-value="2"><strong>2 pages</strong><small>15 minute lesson</small></button>
       </div>
     </div>
     <div class="choice-section">
