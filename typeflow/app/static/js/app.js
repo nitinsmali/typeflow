@@ -536,13 +536,6 @@ function initPracticeFlow() {
     startPractice();
   });
 
-  document.getElementById("settingsBtn").addEventListener("click", () => {
-    resultsModal.classList.add("hidden");
-    typingPanel.classList.add("hidden");
-    setupPanel.classList.remove("hidden");
-    resetPractice();
-  });
-
   document.querySelector("[data-close-results]").addEventListener("click", () => {
     resultsModal.classList.add("hidden");
   });
