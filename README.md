@@ -2,109 +2,157 @@
 
 TypeFlow is a lightweight typing-practice website built with Flask, SQLAlchemy, and vanilla JavaScript. Its tagline is: **Type better. Type faster. Flow naturally.**
 
+## Project status
+
+TypeFlow is a working MVP for local use, portfolio demonstration, and community improvement. The core typing flow is complete, but production deployment should wait until the security and database items in the roadmap are addressed.
+
 ## Features
 
-- Landing page with premium milky-white and blue visual style
-- Fully functional typing test with live WPM, accuracy, timers, and error tracking
-- Simple timed lessons: 1, 2, or 5 minutes
-- Simple page lessons: 1 or 2 pages
-- Guest mode with no forced signup
-- Optional sign up / login flow with hashed passwords
+- Focused landing page with TypeFlow branding
+- Live WPM, accuracy, timers, character counts, and error tracking
+- Timed lessons: 1, 2, or 5 minutes
+- Page lessons: 1 or 2 pages
+- Guest practice with no forced signup
+- Optional signup and login with hashed passwords
 - Progress dashboard for authenticated users
-- SQLite database with clean model structure for future PostgreSQL migration
+- SQLite database with a clear path to PostgreSQL
 
-## Tech Stack
+## Quick start
+
+From the repository root:
+
+```powershell
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+Copy-Item .env.example .env
+python run.py
+```
+
+Open `http://127.0.0.1:5000/`. The first launch creates the local SQLite database and seeds lesson records. Stop the development server with `Ctrl+C`.
+
+On macOS or Linux, use `source venv/bin/activate` instead of the PowerShell activation command.
+
+## Tech stack
 
 - Flask
 - Flask-SQLAlchemy
-- SQLite
+- SQLite for development
 - Vanilla JavaScript
 - CSS custom properties and responsive design
 
-## Local Setup (Windows)
+## Configuration
 
-1. Open PowerShell in the project folder.
-2. Create a virtual environment:
+Copy `.env.example` to `.env` for local development:
 
-   python -m venv venv
+```dotenv
+SECRET_KEY=replace-with-a-long-random-value
+DATABASE_URL=sqlite:///instance/typing_jungle.db
+```
 
-3. Activate it:
-
-   .\venv\Scripts\Activate.ps1
-
-4. Install dependencies:
-
-   pip install -r requirements.txt
-
-5. Create your environment file:
-
-   Copy-Item .env.example .env
-
-6. Initialize the database by starting the app. The database is created automatically when the app first launches.
-
-## Run the app
-
-From the project root:
-
-   .\venv\Scripts\Activate.ps1
-   python run.py
-
-Then visit:
-
-   http://127.0.0.1:5000/
-
-## Environment variables
-
-The project includes `.env.example`:
-
-   SECRET_KEY=change-this-secret-key
-   DATABASE_URL=sqlite:///instance/typing_jungle.db
-
-If you want to customize the secret key or database location, update the `.env` file.
+- Never commit `.env` or real credentials.
+- Use a long random `SECRET_KEY` outside local development.
+- Use PostgreSQL for a persistent production deployment.
+- `instance/` contains local runtime data and is not source code.
 
 ## Project structure
 
-- `app/` - Flask app package
+- `app/` - Flask application package
   - `templates/` - HTML templates
-  - `static/` - CSS and JavaScript assets
+  - `static/` - CSS, JavaScript, and image assets
   - `data.py` - lesson and practice content
   - `models.py` - SQLAlchemy models
-  - `routes.py` - routes and API endpoints
+  - `routes.py` - web routes and API endpoints
 - `instance/` - local SQLite database files
 - `config.py` - Flask configuration
 - `requirements.txt` - Python dependencies
-- `run.py` - app entry point
+- `run.py` - application entry point
 - `.env.example` - sample environment configuration
 
-## Authentication
+## Production deployment
 
-The app supports guest practice without an account. Users can also create an account, log in, and view saved typing history.
+The simplest hosting choice for this Flask MVP is **Render** or **Railway**. Both can deploy directly from GitHub.
 
-Passwords are hashed before storage using Werkzeug's password hashing utilities.
+```text
+Build command: pip install -r requirements.txt
+Start command: gunicorn run:app
+```
+
+Before deploying, add Gunicorn:
+
+```powershell
+pip install gunicorn
+pip freeze > requirements.txt
+```
+
+Configure `SECRET_KEY` and a PostgreSQL `DATABASE_URL` in the hosting provider's environment settings. Do not run `python run.py` or Flask debug mode in production. Add a health check for `/` and configure database backups.
+
+## Development workflow
+
+1. Create a branch for each change.
+2. Run the app locally and test guest practice, account flows, and results.
+3. Keep the experience focused: choose a lesson, type, view results, or return home.
+4. Validate JavaScript with `node --check app/static/js/app.js`.
+5. Open a pull request with a concise description and screenshots for visual changes.
+
+## Authentication and security
+
+Users can practice as guests or create an account, log in, and view saved typing history. Passwords are hashed with Werkzeug.
+
+Authentication is currently an MVP implementation. Before public launch, add CSRF protection, rate limiting, secure cookie settings, password reset, email verification, and production session configuration.
 
 ## API overview
 
 - `GET /` - landing page
-- `GET /practice` - typing workspace with setup screen
+- `GET /practice` - typing workspace
 - `GET /library` - lesson library
 - `GET /progress` - progress dashboard
 - `POST /api/auth/register` - sign up
 - `POST /api/auth/login` - log in
 - `POST /api/auth/logout` - log out
 - `POST /api/results` - save a typing result
-- `GET /api/results` - get current user's saved results
+- `GET /api/results` - get the current user's saved results
 - `GET /api/lessons` - JSON lesson list
 
 ## Troubleshooting
 
-- If the app fails to start, confirm your virtual environment is active and dependencies are installed.
-- If the database is not created, delete any stale database file and rerun the app.
-- If you get a `409` on registration, the email already exists. Use a different email or sign in.
-- If static assets are not loading, confirm the Flask app is running from the project root.
+- Confirm the virtual environment is active and dependencies are installed.
+- If the database is not created, delete the local database and rerun the app.
+- A `409` during registration means the email already exists.
+- If PowerShell blocks activation, run `Set-ExecutionPolicy -Scope Process Bypass` and activate again.
+- If port `5000` is busy, stop the other development server or change the port in `run.py`.
+- If static assets are missing, confirm Flask is running from the repository root.
 
-## Future improvements
+## Known limitations
 
-- Add saved lesson progress per user
-- Expand the library with more lessons and categories
-- Add challenge mode and multiplayer leaderboards
-- Support PostgreSQL migration for production workloads
+- There is no automated test suite yet.
+- Schema migrations are not configured; tables currently use `db.create_all()`.
+- SQLite is not appropriate for multiple production workers or durable cloud storage.
+- Guest results are not associated with an account.
+- There is no password reset, email verification, moderation, or abuse protection.
+- The development entry point enables debug mode and must not be used as the production server.
+
+## Prioritized roadmap
+
+### High priority
+
+1. Add automated tests for lesson selection, typing metrics, authentication, and result persistence.
+2. Add Flask-Migrate/Alembic migrations and verify PostgreSQL support.
+3. Harden authentication with CSRF protection, secure cookies, rate limiting, and password reset.
+4. Add a production WSGI configuration, health check, structured logging, and deployment checks.
+5. Fix accessibility gaps: keyboard navigation, focus states, semantic labels, and color contrast.
+
+### Medium priority
+
+6. Add personal bests and saved progress for signed-in users.
+7. Test and improve mobile and tablet typing layouts.
+8. Expand the curated lesson library without adding unnecessary interface complexity.
+9. Add CI checks for Python syntax, JavaScript syntax, and the test suite.
+
+### Later
+
+10. Add optional challenges or leaderboards after the core experience is stable.
+11. Add privacy-respecting, minimal analytics only if product decisions need them.
+12. Add a custom domain, monitoring, backups, and performance tuning.
+
+Contributors should start with the open GitHub issues, especially the production-readiness issue, and keep changes small and focused.
