@@ -505,4 +505,10 @@ function initPracticeFlow() {
   });
 
   resetPractice();
+
+  if (requestedMode === "timed" || requestedMode === "pages") {
+    setupPanel.classList.add("hidden");
+    typingPanel.classList.remove("hidden");
+    startPractice();
+  }
 }
