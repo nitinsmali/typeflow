@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block title %}Practice | TypeFlow{% endblock %}
+
+{% block content %}
+<div class="container practice-page">
+  <section class="card setup-panel" aria-labelledby="practice-setup-heading">
+    <div class="panel-header">
+      <div>
+        <p class="eyebrow muted">Start a lesson</p>
+        <h2 id="practice-setup-heading">Choose how long you want to type</h2>
+      </div>
+    </div>
+
+    <div class="setup-grid">
+      <div class="field-group">
+        <label>Timed practice</label>
+        <div class="segmented-control" data-group="duration">
+          <button type="button" class="segment active" data-value="60">1 min</button>
+          <button type="button" class="segment" data-value="120">2 min</button>
+          <button type="button" class="segment" data-value="300">5 min</button>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>Page practice</label>
+        <div class="segmented-control" data-group="pages">
+          <button type="button" class="segment" data-value="1">1 page</button>
+          <button type="button" class="segment" data-value="2">2 pages</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-row">
+      <button type="button" id="startPracticeBtn" class="btn btn-primary btn-large">Start lesson</button>
+    </div>
+  </section>
+
+  <section class="card typing-panel hidden" id="typingPanel" aria-live="polite">
+    <div class="stats-row">
+      <div class="stat-pill"><span>Timer</span><strong id="timerValue">0s</strong></div>
+      <div class="stat-pill"><span>WPM</span><strong id="wpmValue">0</strong></div>
+      <div class="stat-pill"><span>Accuracy</span><strong id="accuracyValue">100%</strong></div>
+      <div class="stat-pill"><span>Errors</span><strong id="errorsValue">0</strong></div>
+    </div>
+
+    <div class="prompt-container">
+      <p class="prompt-label">Text to type</p>
+      <div id="textDisplay" class="text-display" aria-label="Typing prompt"></div>
+    </div>
+
+    <label class="sr-only" for="typingInput">Typing input</label>
+    <textarea id="typingInput" class="typing-input" rows="5" aria-label="Type here" placeholder="Start typing when you're ready."></textarea>
+
+    <div class="practice-footer">
+      <div class="mini-stats">
+        <span>Characters: <strong id="charCount">0</strong></span>
+        <span>Errors: <strong id="footerErrors">0</strong></span>
+        <span>Progress: <strong id="progressValue">0%</strong></span>
+      </div>
+      <button id="restartBtn" type="button" class="btn btn-secondary">Restart</button>
+    </div>
+  </section>
+</div>
+
+<div class="modal hidden" id="resultsModal" aria-modal="true" role="dialog" aria-labelledby="resultsHeading">
+  <div class="modal-backdrop" data-close-results></div>
+  <div class="modal-card card">
+    <div class="modal-header">
+      <p class="eyebrow muted">Session complete</p>
+      <h3 id="resultsHeading">Typing results</h3>
+    </div>
+
+    <div class="results-grid">
+      <div class="result-stat">
+        <span>WPM</span>
+        <strong id="resultWpm">0</strong>
+      </div>
+      <div class="result-stat">
+        <span>Accuracy</span>
+        <strong id="resultAccuracy">0%</strong>
+      </div>
+      <div class="result-stat">
+        <span>Time</span>
+        <strong id="resultTime">0s</strong>
+      </div>
+      <div class="result-stat">
+        <span>Errors</span>
+        <strong id="resultErrors">0</strong>
+      </div>
+      <div class="result-stat">
+        <span>Characters</span>
+        <strong id="resultCharacters">0</strong>
+      </div>
+    </div>
+
+    <p class="result-summary" id="resultSummary">You finished strong. Keep your wrists relaxed and your rhythm steady.</p>
+
+    <div class="modal-actions">
+      <button type="button" class="btn btn-primary" id="againBtn">Try again</button>
+      <button type="button" class="btn btn-secondary" id="settingsBtn">Choose again</button>
+      <a href="{{ url_for('main.index') }}" class="btn btn-ghost">Back to home</a>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" id="practiceLibraryData">{{ practice_library | tojson }}</script>
+{% endblock %}

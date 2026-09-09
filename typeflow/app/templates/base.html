@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}TypeFlow{% endblock %}</title>
+    <meta name="description" content="TypeFlow helps you type better, type faster, and flow naturally." />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+    <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-shell">
+        <a class="brand" href="{{ url_for('main.index') }}" aria-label="TypeFlow home">
+          <span class="brand-mark">TF</span>
+          <span class="brand-name">TypeFlow</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a class="nav-link {% if page == 'practice' %}active{% endif %}" href="{{ url_for('main.practice') }}">Practice</a>
+        </nav>
+
+        <div class="nav-actions">
+          {% if session.get('user_id') %}
+            <a class="btn btn-ghost" href="{{ url_for('main.progress_page') }}">Progress</a>
+            <button class="btn btn-primary" type="button" data-logout-button>Log out</button>
+          {% else %}
+            <a class="btn btn-ghost" href="{{ url_for('main.auth_page') }}?mode=login">Log in</a>
+          {% endif %}
+        </div>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© 2026 TypeFlow</p>
+        <ul>
+          <li><a href="{{ url_for('main.practice') }}">Practice</a></li>
+          {% if session.get('user_id') %}<li><a href="{{ url_for('main.progress_page') }}">Progress</a></li>{% endif %}
+        </ul>
+      </div>
+    </footer>
+  </body>
+</html>

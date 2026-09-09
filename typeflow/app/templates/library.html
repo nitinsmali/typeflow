@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Lessons | TypeFlow{% endblock %}
+
+{% block content %}
+<div class="container section-page">
+  <div class="section-heading">
+    <p class="eyebrow">Learning library</p>
+    <h1>Practice paths tailored to every level</h1>
+  </div>
+
+  <div class="lesson-grid">
+    {% for lesson in lessons %}
+    <article class="lesson-card card">
+      <div class="lesson-meta">
+        <span class="pill">{{ lesson.category }}</span>
+        <span class="pill neutral">{{ lesson.difficulty }}</span>
+      </div>
+      <h2>{{ lesson.title }}</h2>
+      <p>{{ lesson.description }}</p>
+      <div class="lesson-footer">
+        <span>{{ lesson.estimated_time }}</span>
+        <a href="{{ url_for('main.lesson_detail', lesson_id=lesson.id) }}" class="btn btn-primary">Start lesson</a>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

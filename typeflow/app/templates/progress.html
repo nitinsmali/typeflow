@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Progress | TypeFlow{% endblock %}
+
+{% block content %}
+<div class="container section-page">
+  {% if user %}
+    <div class="section-heading">
+      <p class="eyebrow">Your progress</p>
+      <h1>Welcome back, {{ user.name }}.</h1>
+    </div>
+
+    <div class="summary-grid">
+      <article class="stat-card card">
+        <span>Average WPM</span>
+        <strong id="avgWpm">0</strong>
+      </article>
+      <article class="stat-card card">
+        <span>Best WPM</span>
+        <strong id="bestWpm">0</strong>
+      </article>
+      <article class="stat-card card">
+        <span>Average accuracy</span>
+        <strong id="avgAccuracy">0%</strong>
+      </article>
+      <article class="stat-card card">
+        <span>Total tests</span>
+        <strong id="totalTests">0</strong>
+      </article>
+    </div>
+
+    <div class="card progress-panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow muted">Recent results</p>
+          <h2>Practice history</h2>
+        </div>
+      </div>
+      <div id="historyList" class="history-list"></div>
+    </div>
+  {% else %}
+    <div class="card empty-state">
+      <p class="eyebrow">Guest mode</p>
+      <h1>Track your progress with a free account</h1>
+      <p>
+        You can practice immediately without signing up. If you later want to save your results and monitor
+        improvements, create an account and your typing history will appear here.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="{{ url_for('main.auth_page') }}?mode=signup">Create account</a>
+        <a class="btn btn-secondary" href="{{ url_for('main.practice') }}">Practice now</a>
+      </div>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

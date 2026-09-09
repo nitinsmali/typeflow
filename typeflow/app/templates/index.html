@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}TypeFlow | Type better. Type faster. Flow naturally.{% endblock %}
+
+{% block content %}
+<div class="container">
+  <section class="hero" aria-labelledby="typeflow-heading">
+    <div class="hero-copy">
+      <p class="eyebrow">A simple typing practice space</p>
+      <h1 id="typeflow-heading">TypeFlow</h1>
+      <p class="hero-subtitle">
+        Type better. Type faster. Flow naturally. Choose a short lesson, start typing, and see your result.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary btn-large" href="{{ url_for('main.practice') }}">Get started</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <img src="{{ url_for('static', filename='img/typeflow-hero.png') }}" alt="Hands typing on a keyboard" />
+    </div>
+  </section>
+
+  <p class="guest-note">No account needed. Just start typing.</p>
+</div>
+{% endblock %}
