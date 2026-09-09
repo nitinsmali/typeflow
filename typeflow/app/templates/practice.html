@@ -29,6 +29,15 @@
           <button type="button" class="segment" data-value="2">2 pages</button>
         </div>
       </div>
+
+      <div class="field-group">
+        <label>Difficulty</label>
+        <div class="segmented-control" data-group="difficulty">
+          <button type="button" class="segment active" data-value="easy">Easy</button>
+          <button type="button" class="segment" data-value="focused">Focused</button>
+          <button type="button" class="segment" data-value="challenge">Challenge</button>
+        </div>
+      </div>
     </div>
 
     <div class="action-row">
@@ -50,7 +59,7 @@
     </div>
 
     <label class="sr-only" for="typingInput">Typing input</label>
-    <textarea id="typingInput" class="typing-input" rows="5" aria-label="Type here" placeholder="Start typing when you're ready."></textarea>
+    <textarea id="typingInput" class="typing-input" rows="3" aria-label="Type here" placeholder="Type here — your keystrokes will be highlighted above."></textarea>
 
     <div class="practice-footer">
       <div class="mini-stats">
@@ -91,6 +100,10 @@
       <div class="result-stat">
         <span>Characters</span>
         <strong id="resultCharacters">0</strong>
+      </div>
+      <div class="result-stat">
+        <span>Correct</span>
+        <strong id="resultCorrect">0</strong>
       </div>
     </div>
 

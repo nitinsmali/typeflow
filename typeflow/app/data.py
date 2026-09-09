@@ -64,9 +64,9 @@ PRACTICE_LIBRARY = {
         "when your eyes stay in front of the words, your fingers can move with clarity and confidence.",
     ],
     "advanced": [
-        "precision under pressure is the mark of a strong typist; focus on smooth motion and clean patterns.",
-        "efficient keyboard control turns repetitive practice into real momentum for speed, accuracy, and confidence.",
-        "the most productive sessions combine deliberate pacing, strong posture, and a steady flow of text.",
+        "Precision under pressure is the mark of a strong typist; focus on smooth motion, clean patterns, and confident punctuation.",
+        "Efficient keyboard control turns deliberate practice into real momentum for speed, accuracy, and confidence. Keep going!",
+        "The most productive sessions combine deliberate pacing, strong posture, and a steady flow of words: calm, clear, consistent.",
     ],
     "numbers": [
         "1234567890 9876543210 2024 44 18.5 7.25 99.9 percent accuracy during timed practice.",

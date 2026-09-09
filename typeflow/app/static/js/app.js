@@ -14,10 +14,16 @@ function initStartModal() {
 
   const closeModal = () => modal.classList.add("hidden");
   const choose = (button) => {
-    document.querySelectorAll("[data-start-choice]").forEach((choice) => {
+    document.querySelectorAll(`[data-start-choice="${button.dataset.startChoice}"]`).forEach((choice) => {
       choice.classList.toggle("active", choice === button);
     });
-    startButton.href = `/practice?mode=${button.dataset.startChoice}&value=${button.dataset.value}`;
+    const activeMode = modal.querySelector('[data-start-choice="pages"].active');
+    const activeTimed = modal.querySelector('[data-start-choice="timed"].active');
+    const activeDifficulty = modal.querySelector('[data-start-choice="difficulty"].active');
+    const mode = activeMode ? "pages" : "timed";
+    const value = activeMode?.dataset.value || activeTimed?.dataset.value || "60";
+    const difficulty = activeDifficulty?.dataset.value || "easy";
+    startButton.href = `/practice?mode=${mode}&value=${value}&difficulty=${difficulty}`;
   };
 
   openButton.addEventListener("click", () => modal.classList.remove("hidden"));
@@ -215,6 +221,7 @@ function initPracticeFlow() {
     duration: 60,
     sessionType: "timed",
     pages: 1,
+    difficulty: "easy",
     userInput: "",
     currentResult: null,
   };
@@ -223,6 +230,10 @@ function initPracticeFlow() {
   const params = new URLSearchParams(window.location.search);
   const requestedMode = params.get("mode");
   const requestedValue = Number(params.get("value"));
+  const requestedDifficulty = ["easy", "focused", "challenge"].includes(params.get("difficulty"))
+    ? params.get("difficulty")
+    : "easy";
+  state.difficulty = requestedDifficulty;
   if ((requestedMode === "timed" || requestedMode === "pages") && Number.isFinite(requestedValue)) {
     state.sessionType = requestedMode;
     if (requestedMode === "timed" && [60, 120, 300].includes(requestedValue)) {
@@ -230,12 +241,16 @@ function initPracticeFlow() {
     }
     if (requestedMode === "pages" && [1, 2].includes(requestedValue)) {
       state.pages = requestedValue;
+      state.duration = requestedValue === 1 ? 480 : 900;
     }
     document.querySelectorAll(".segment").forEach((segment) => {
       const isActive = segment.dataset.group === requestedMode && Number(segment.dataset.value) === requestedValue;
       segment.classList.toggle("active", isActive);
     });
   }
+  document.querySelectorAll(".segment[data-group='difficulty']").forEach((segment) => {
+    segment.classList.toggle("active", segment.dataset.value === state.difficulty);
+  });
 
   document.querySelectorAll(".segment[data-group='duration']").forEach((button) => {
     button.addEventListener("click", () => {
@@ -250,6 +265,7 @@ function initPracticeFlow() {
       document.querySelectorAll(".segment[data-group='pages']").forEach((segment) => segment.classList.toggle("active", segment === button));
       state.pages = Number(button.dataset.value);
       state.sessionType = "pages";
+      state.duration = state.pages === 1 ? 480 : 900;
       document.querySelectorAll(".segment[data-group='duration']").forEach((segment) => segment.classList.remove("active"));
     });
   });
@@ -264,7 +280,14 @@ function initPracticeFlow() {
   }
 
   function getPromptText() {
-    const basePool = Array.isArray(library.mixed) ? library.mixed : [];
+    const difficultyPools = {
+      easy: library.beginner,
+      focused: library.intermediate,
+      challenge: library.advanced,
+    };
+    const basePool = Array.isArray(difficultyPools[state.difficulty])
+      ? difficultyPools[state.difficulty]
+      : library.mixed;
     const textChoice = basePool[Math.floor(Math.random() * basePool.length)] || "Type with a calm rhythm and let every keystroke become more natural.";
     const targetLength = state.sessionType === "pages" ? state.pages * 900 : Math.max(240, state.duration * 6);
     let repeated = "";
@@ -273,6 +296,15 @@ function initPracticeFlow() {
     }
     return repeated.trim();
   }
+
+  document.querySelectorAll(".segment[data-group='difficulty']").forEach((button) => {
+    button.addEventListener("click", () => {
+      document.querySelectorAll(".segment[data-group='difficulty']").forEach((segment) => {
+        segment.classList.toggle("active", segment === button);
+      });
+      state.difficulty = button.dataset.value;
+    });
+  });
 
   function updateMetrics() {
     if (!state.prompt) return;
@@ -305,12 +337,8 @@ function initPracticeFlow() {
     if (footerErrors) footerErrors.textContent = String(incorrectCount);
     progressValue.textContent = `${Math.min(100, progress).toFixed(0)}%`;
 
-    if (state.sessionType === "timed") {
-      const timerSeconds = Math.min(Math.max(state.duration - elapsedSeconds, 0), state.duration);
-      timerValue.textContent = `${Math.ceil(timerSeconds)}s`;
-    } else {
-      timerValue.textContent = `${Math.floor(elapsedSeconds)}s`;
-    }
+    const timerSeconds = Math.min(Math.max(state.duration - elapsedSeconds, 0), state.duration);
+    timerValue.textContent = `${Math.ceil(timerSeconds)}s`;
   }
 
   function renderPrompt() {
@@ -332,6 +360,7 @@ function initPracticeFlow() {
       .join("");
 
     textDisplay.innerHTML = html;
+    textDisplay.querySelector(".current")?.scrollIntoView({ block: "center", behavior: "auto" });
   }
 
   function endSession() {
@@ -363,7 +392,7 @@ function initPracticeFlow() {
         errors: incorrect,
         characters_typed: totalTyped,
         duration: Math.ceil(elapsedSeconds),
-        difficulty: "standard",
+        difficulty: state.difficulty,
         mode: state.sessionType,
         category: "mixed",
       };
@@ -382,6 +411,7 @@ function initPracticeFlow() {
     const resultTime = document.getElementById("resultTime");
     const resultErrors = document.getElementById("resultErrors");
     const resultCharacters = document.getElementById("resultCharacters");
+    const resultCorrect = document.getElementById("resultCorrect");
     const resultSummary = document.getElementById("resultSummary");
 
     resultWpm.textContent = result.wpm.toFixed(1);
@@ -389,6 +419,7 @@ function initPracticeFlow() {
     resultTime.textContent = `${result.duration}s`;
     resultErrors.textContent = String(result.errors);
     resultCharacters.textContent = String(result.characters_typed);
+    resultCorrect.textContent = String(result.characters_typed - result.errors);
     resultSummary.textContent = result.accuracy >= 95
       ? "Excellent accuracy. Your rhythm is controlled and consistent."
       : result.accuracy >= 85
@@ -436,7 +467,7 @@ function initPracticeFlow() {
         updateMetrics();
         if (
           state.userInput.length >= state.prompt.length ||
-          (state.sessionType === "timed" && (Date.now() - state.startTime) / 1000 >= state.duration)
+          (Date.now() - state.startTime) / 1000 >= state.duration
         ) {
           endSession();
         }

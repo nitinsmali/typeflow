@@ -46,7 +46,15 @@
         <button class="choice-card" type="button" data-start-choice="pages" data-value="2"><strong>2 pages</strong><small>Keep the flow going</small></button>
       </div>
     </div>
-    <a class="btn btn-primary btn-large start-choice-button" id="startChoiceButton" href="{{ url_for('main.practice') }}?mode=timed&value=60">Start lesson</a>
+    <div class="choice-section">
+      <span class="choice-label">Difficulty</span>
+      <div class="choice-grid difficulty-grid">
+        <button class="choice-card active" type="button" data-start-choice="difficulty" data-value="easy"><strong>Easy</strong><small>Simple words</small></button>
+        <button class="choice-card" type="button" data-start-choice="difficulty" data-value="focused"><strong>Focused</strong><small>Natural sentences</small></button>
+        <button class="choice-card" type="button" data-start-choice="difficulty" data-value="challenge"><strong>Challenge</strong><small>Punctuation &amp; capitals</small></button>
+      </div>
+    </div>
+    <a class="btn btn-primary btn-large start-choice-button" id="startChoiceButton" href="{{ url_for('main.practice') }}?mode=timed&value=60&difficulty=easy">Start lesson</a>
   </div>
 </div>
 {% endblock %}
