@@ -9,18 +9,44 @@
       <p class="eyebrow">A simple typing practice space</p>
       <h1 id="typeflow-heading">TypeFlow</h1>
       <p class="hero-subtitle">
-        Type better. Type faster. Flow naturally. Choose a short lesson, start typing, and see your result.
+        Build your rhythm, sharpen your accuracy, and make every keystroke feel effortless.
       </p>
+      <p class="tagline">Type better. Type faster. <span>Flow naturally.</span></p>
       <div class="cta-row">
-        <a class="btn btn-primary btn-large" href="{{ url_for('main.practice') }}">Get started</a>
+        <button class="btn btn-primary btn-large" type="button" id="openStartModal">Get started</button>
       </div>
     </div>
 
     <div class="hero-visual">
-      <img src="{{ url_for('static', filename='img/typeflow-hero.png') }}" alt="Hands typing on a keyboard" />
+      <img src="{{ url_for('static', filename='img/typeflow-hero.svg') }}" alt="Illustration of a bright keyboard ready for practice" />
     </div>
   </section>
 
   <p class="guest-note">No account needed. Just start typing.</p>
+</div>
+
+<div class="modal hidden" id="startModal" aria-modal="true" role="dialog" aria-labelledby="startModalHeading">
+  <div class="modal-backdrop" data-close-start></div>
+  <div class="modal-card start-modal-card card">
+    <button class="modal-close" type="button" data-close-start aria-label="Close lesson choices">&times;</button>
+    <p class="eyebrow muted">Choose a lesson</p>
+    <h2 id="startModalHeading">How do you want to practice?</h2>
+    <div class="choice-section">
+      <span class="choice-label">Timed</span>
+      <div class="choice-grid">
+        <button class="choice-card active" type="button" data-start-choice="timed" data-value="60"><strong>1 min</strong><small>Quick warm-up</small></button>
+        <button class="choice-card" type="button" data-start-choice="timed" data-value="120"><strong>2 min</strong><small>Focused practice</small></button>
+        <button class="choice-card" type="button" data-start-choice="timed" data-value="300"><strong>5 min</strong><small>Deep practice</small></button>
+      </div>
+    </div>
+    <div class="choice-section">
+      <span class="choice-label">Pages</span>
+      <div class="choice-grid pages-grid">
+        <button class="choice-card" type="button" data-start-choice="pages" data-value="1"><strong>1 page</strong><small>One clear goal</small></button>
+        <button class="choice-card" type="button" data-start-choice="pages" data-value="2"><strong>2 pages</strong><small>Keep the flow going</small></button>
+      </div>
+    </div>
+    <a class="btn btn-primary btn-large start-choice-button" id="startChoiceButton" href="{{ url_for('main.practice') }}?mode=timed&value=60">Start lesson</a>
+  </div>
 </div>
 {% endblock %}

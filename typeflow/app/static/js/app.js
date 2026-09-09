@@ -1,9 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
+  initStartModal();
   initAuthFlow();
   initLogout();
   initPracticeFlow();
   initProgressPage();
 });
+
+function initStartModal() {
+  const modal = document.getElementById("startModal");
+  const openButton = document.getElementById("openStartModal");
+  const startButton = document.getElementById("startChoiceButton");
+  if (!modal || !openButton || !startButton) return;
+
+  const closeModal = () => modal.classList.add("hidden");
+  const choose = (button) => {
+    document.querySelectorAll("[data-start-choice]").forEach((choice) => {
+      choice.classList.toggle("active", choice === button);
+    });
+    startButton.href = `/practice?mode=${button.dataset.startChoice}&value=${button.dataset.value}`;
+  };
+
+  openButton.addEventListener("click", () => modal.classList.remove("hidden"));
+  modal.querySelectorAll("[data-close-start]").forEach((element) => element.addEventListener("click", closeModal));
+  modal.querySelectorAll("[data-start-choice]").forEach((button) => {
+    button.addEventListener("click", () => choose(button));
+  });
+}
 
 function initLogout() {
   const button = document.querySelector("[data-logout-button]");
@@ -198,6 +220,22 @@ function initPracticeFlow() {
   };
 
   const library = JSON.parse(document.getElementById("practiceLibraryData")?.textContent || "{}");
+  const params = new URLSearchParams(window.location.search);
+  const requestedMode = params.get("mode");
+  const requestedValue = Number(params.get("value"));
+  if ((requestedMode === "timed" || requestedMode === "pages") && Number.isFinite(requestedValue)) {
+    state.sessionType = requestedMode;
+    if (requestedMode === "timed" && [60, 120, 300].includes(requestedValue)) {
+      state.duration = requestedValue;
+    }
+    if (requestedMode === "pages" && [1, 2].includes(requestedValue)) {
+      state.pages = requestedValue;
+    }
+    document.querySelectorAll(".segment").forEach((segment) => {
+      const isActive = segment.dataset.group === requestedMode && Number(segment.dataset.value) === requestedValue;
+      segment.classList.toggle("active", isActive);
+    });
+  }
 
   document.querySelectorAll(".segment[data-group='duration']").forEach((button) => {
     button.addEventListener("click", () => {
