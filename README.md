@@ -46,7 +46,7 @@ The local SQLite database is created automatically on first launch. Stop the app
 
 ```dotenv
 SECRET_KEY=replace-with-a-long-random-value
-DATABASE_URL=sqlite:///instance/typing_jungle.db
+DATABASE_URL=sqlite:///instance/typeflow.db
 ```
 
 Keep `.env`, database files, passwords, tokens, and other private values out of Git. Never publish real credentials in documentation, screenshots, issues, or pull requests.
