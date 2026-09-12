@@ -213,6 +213,7 @@ function initPracticeFlow() {
   const startBtn = document.getElementById("startPracticeBtn");
   const timerValue = document.getElementById("timerValue");
   const wpmValue = document.getElementById("wpmValue");
+  const charsPerMinuteValue = document.getElementById("charsPerMinuteValue");
   const accuracyValue = document.getElementById("accuracyValue");
   const errorsValue = document.getElementById("errorsValue");
   const textDisplay = document.getElementById("textDisplay");
@@ -339,10 +340,12 @@ function initPracticeFlow() {
     const elapsedSeconds = state.startTime ? Math.max((Date.now() - state.startTime) / 1000, 0.1) : 0;
     const minutes = Math.max(elapsedSeconds / 60, 1 / 60);
     const wpm = correctCountValue > 0 ? (correctCountValue / 5) / minutes : 0;
+    const charsPerMinute = totalTyped > 0 ? totalTyped / minutes : 0;
     const accuracy = totalTyped > 0 ? (correctCountValue / totalTyped) * 100 : 100;
     const progress = state.prompt.length ? (typedLength / state.prompt.length) * 100 : 0;
 
     wpmValue.textContent = wpm.toFixed(1);
+    if (charsPerMinuteValue) charsPerMinuteValue.textContent = charsPerMinute.toFixed(0);
     accuracyValue.textContent = `${Math.min(100, accuracy).toFixed(0)}%`;
     errorsValue.textContent = String(incorrectCount);
     charCount.textContent = String(totalTyped);
@@ -469,7 +472,6 @@ function initPracticeFlow() {
 
     typingInput.disabled = false;
     typingInput.value = "";
-    typingInput.focus();
     renderPrompt();
     updateMetrics();
 
@@ -498,6 +500,7 @@ function initPracticeFlow() {
     resultsModal.classList.add("hidden");
     clearInterval(state.timerId);
     timerValue.textContent = `${state.duration}s`;
+    if (charsPerMinuteValue) charsPerMinuteValue.textContent = "0";
     wpmValue.textContent = "0";
     accuracyValue.textContent = "100%";
     errorsValue.textContent = "0";

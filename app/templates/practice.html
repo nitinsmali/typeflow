@@ -46,28 +46,36 @@
   </section>
 
   <section class="card typing-panel hidden" id="typingPanel" aria-live="polite">
+    <div class="typing-hero">
+      <p class="eyebrow muted">TypeFlow speed test</p>
+      <h1>Test your typing skills</h1>
+    </div>
+
     <div class="stats-row">
-      <div class="stat-pill"><span>Timer</span><strong id="timerValue">0s</strong></div>
-      <div class="stat-pill"><span>WPM</span><strong id="wpmValue">0</strong></div>
-      <div class="stat-pill"><span>Accuracy</span><strong id="accuracyValue">100%</strong></div>
-      <div class="stat-pill"><span>Errors</span><strong id="errorsValue">0</strong></div>
+      <div class="stat-pill timer-stat">
+        <span class="timer-ring"><strong id="timerValue">0</strong><small>seconds</small></span>
+      </div>
+      <div class="stat-pill metric-stat"><strong id="wpmValue">0</strong><span>words/min</span></div>
+      <div class="stat-pill metric-stat"><strong id="charsPerMinuteValue">0</strong><span>chars/min</span></div>
+      <div class="stat-pill metric-stat"><strong id="accuracyValue">100%</strong><span>% accuracy</span></div>
     </div>
 
-    <div class="prompt-container">
-      <p class="prompt-label">Text to type</p>
-      <div id="textDisplay" class="text-display" aria-label="Typing prompt"></div>
-    </div>
+    <div class="typing-surface">
+      <div class="prompt-container">
+        <div id="textDisplay" class="text-display" aria-label="Typing prompt"></div>
+      </div>
 
-    <label class="sr-only" for="typingInput">Typing input</label>
-    <textarea id="typingInput" class="typing-input" rows="3" aria-label="Type here" placeholder="Type here — your keystrokes will be highlighted above."></textarea>
+      <label class="sr-only" for="typingInput">Typing input</label>
+      <textarea id="typingInput" class="typing-input" rows="3" aria-label="Type here" placeholder="Start typing"></textarea>
+    </div>
 
     <div class="practice-footer">
       <div class="mini-stats">
         <span>Characters: <strong id="charCount">0</strong></span>
-        <span>Errors: <strong id="footerErrors">0</strong></span>
+        <span>Errors: <strong id="errorsValue">0</strong></span>
         <span>Progress: <strong id="progressValue">0%</strong></span>
       </div>
-      <button id="restartBtn" type="button" class="btn btn-secondary">Restart</button>
+      <button id="restartBtn" type="button" class="btn btn-secondary">Restart test</button>
     </div>
   </section>
 </div>
