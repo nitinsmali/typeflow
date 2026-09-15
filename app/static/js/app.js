@@ -375,7 +375,10 @@ function initPracticeFlow() {
       .join("");
 
     textDisplay.innerHTML = html;
-    textDisplay.querySelector(".current")?.scrollIntoView({ block: "center", behavior: "auto" });
+    const currentChar = textDisplay.querySelector(".current");
+    if (currentChar) {
+      textDisplay.scrollTop = Math.max(0, currentChar.offsetTop - textDisplay.clientHeight / 2);
+    }
   }
 
   function endSession() {
@@ -464,6 +467,8 @@ function initPracticeFlow() {
   }
 
   function startPractice() {
+    document.body.classList.add("typing-mode");
+    window.scrollTo({ top: 0, behavior: "auto" });
     state.prompt = getPromptText();
     state.userInput = "";
     state.completed = false;
@@ -474,6 +479,7 @@ function initPracticeFlow() {
     typingInput.value = "";
     renderPrompt();
     updateMetrics();
+    typingInput.focus({ preventScroll: true });
 
     clearInterval(state.timerId);
     state.timerId = setInterval(() => {
@@ -520,6 +526,28 @@ function initPracticeFlow() {
     startPractice();
   });
 
+  document.querySelector(".typing-surface")?.addEventListener("click", () => {
+    if (!state.completed) typingInput.focus({ preventScroll: true });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    const isTypingKey = event.key.length === 1 || event.key === "Backspace";
+    const isTypingView = !typingPanel.classList.contains("hidden");
+    const isModalOpen = !resultsModal.classList.contains("hidden");
+    const activeElement = document.activeElement;
+
+    if (
+      isTypingView &&
+      !isModalOpen &&
+      isTypingKey &&
+      activeElement !== typingInput &&
+      activeElement?.tagName !== "BUTTON" &&
+      activeElement?.tagName !== "A"
+    ) {
+      typingInput.focus({ preventScroll: true });
+    }
+  });
+
   typingInput.addEventListener("input", (event) => {
     if (state.completed) return;
 
@@ -546,6 +574,7 @@ function initPracticeFlow() {
   resetPractice();
 
   if (requestedMode === "timed" || requestedMode === "pages") {
+    document.body.classList.add("typing-mode");
     setupPanel.classList.add("hidden");
     typingPanel.classList.remove("hidden");
     startPractice();

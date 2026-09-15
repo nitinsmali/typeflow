@@ -629,31 +629,64 @@ textarea {
   box-shadow: none;
 }
 
+body.typing-mode {
+  background: #323437;
+  color: #d1d0c5;
+}
+
+body.typing-mode .site-header,
+body.typing-mode .site-footer {
+  background: #323437;
+  border-color: rgba(209, 208, 197, 0.08);
+}
+
+body.typing-mode .brand,
+body.typing-mode .nav-link,
+body.typing-mode .nav-actions .btn {
+  color: #d1d0c5;
+}
+
+body.typing-mode .nav-link:hover,
+body.typing-mode .nav-link.active,
+body.typing-mode .nav-actions .btn:hover {
+  background: rgba(209, 208, 197, 0.08);
+}
+
+body.typing-mode .page-shell {
+  min-height: calc(100vh - 125px);
+  padding: 0;
+}
+
+body.typing-mode .container {
+  width: min(1080px, calc(100% - 48px));
+}
+
 .typing-hero {
-  margin: 4px auto 22px;
-  text-align: center;
+  margin: 24px auto 18px;
+  text-align: left;
 }
 
 .typing-hero .eyebrow {
-  margin-bottom: 12px;
-  color: #6c6d75;
-  font-size: 0.72rem;
+  margin-bottom: 8px;
+  color: #646669;
+  font-size: 0.68rem;
 }
 
 .typing-hero h1 {
   margin: 0;
-  color: #202126;
-  font-size: clamp(2rem, 5vw, 3.6rem);
-  letter-spacing: -0.06em;
+  color: #d1d0c5;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   line-height: 1;
 }
 
 .stats-row {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 26px;
+  justify-content: flex-start;
+  gap: 26px;
+  margin-bottom: 44px;
 }
 
 .stat-pill {
@@ -661,38 +694,33 @@ textarea {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 96px;
-  height: 96px;
-  gap: 3px;
-  padding: 10px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(31, 32, 38, 0.04);
-  box-shadow: 0 9px 24px rgba(31, 32, 38, 0.06);
+  width: auto;
+  height: auto;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .stat-pill span,
 .stat-card span,
 .result-stat span {
-  font-size: 0.8rem;
-  color: var(--color-muted);
-  letter-spacing: 0.02em;
+  font-size: 0.7rem;
+  color: #646669;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .stat-pill strong,
 .stat-card strong,
 .result-stat strong {
-  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  font-size: 1.15rem;
 }
 
 .timer-stat {
-  width: 96px;
-  height: 96px;
-  padding: 0;
-  border-radius: 50%;
-  background: transparent;
-  border: 3px solid #f2c400;
-  box-shadow: none;
+  min-width: 58px;
 }
 
 .timer-ring {
@@ -700,28 +728,28 @@ textarea {
   align-items: center;
   flex-direction: column;
   gap: 0;
-  color: #202126;
+  color: #e2b714;
 }
 
 .timer-ring strong {
-  font-size: 1.8rem;
+  font-size: 1.35rem;
   line-height: 1;
 }
 
 .timer-ring small {
-  color: #6c6d75;
-  font-size: 0.78rem;
+  color: #646669;
+  font-size: 0.7rem;
 }
 
 .metric-stat strong {
-  color: #202126;
-  font-size: 1.7rem;
+  color: #d1d0c5;
+  font-size: 1.35rem;
   line-height: 1;
 }
 
 .metric-stat span {
-  color: #686a73;
-  font-size: 0.74rem;
+  color: #646669;
+  font-size: 0.7rem;
   white-space: nowrap;
 }
 
@@ -738,14 +766,14 @@ textarea {
 }
 
 .text-display {
-  height: 76px;
+  height: 132px;
   overflow: hidden;
   padding: 0;
   background: transparent;
   border: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.1rem, 1.9vw, 1.45rem);
-  line-height: 1.5;
+  font-family: "Courier New", Courier, monospace;
+  font-size: clamp(1.35rem, 2.25vw, 1.8rem);
+  line-height: 1.55;
   letter-spacing: 0;
   white-space: pre-wrap;
   word-break: normal;
@@ -753,41 +781,46 @@ textarea {
   scroll-behavior: smooth;
 }
 
+.char {
+  color: #646669;
+}
+
 .char.correct {
-  color: var(--color-success);
+  color: #d1d0c5;
 }
 
 .char.incorrect {
-  color: var(--color-error);
-  background: rgba(217, 76, 76, 0.08);
+  color: #ca4754;
+  background: transparent;
 }
 
 .char.current {
-  background: rgba(29, 116, 217, 0.12);
-  border-radius: 6px;
-  box-shadow: inset 0 0 0 1px rgba(29, 116, 217, 0.22);
+  color: #d1d0c5;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: inset 3px 0 0 #e2b714;
 }
 
 .typing-input {
-  height: 48px;
-  min-height: 48px;
-  margin: 18px 0 0;
-  padding: 12px 0 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  min-height: 1px;
+  margin: -1px;
+  padding: 0;
   border: 0;
-  border-top: 1px solid rgba(31, 32, 38, 0.08);
-  border-radius: 0;
   background: transparent;
-  color: #202126;
-  font-size: 1rem;
-  resize: none;
+  color: transparent;
+  opacity: 0;
 }
 
 .typing-surface {
-  min-height: 150px;
-  padding: 22px 28px 16px;
-  border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 12px 28px rgba(31, 32, 38, 0.1);
+  position: relative;
+  min-height: 184px;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .practice-footer {
@@ -795,6 +828,7 @@ textarea {
   align-items: center;
   justify-content: space-between;
   gap: 14px;
+  margin-top: 22px;
   flex-wrap: wrap;
 }
 
@@ -802,8 +836,18 @@ textarea {
   display: flex;
   gap: 18px;
   flex-wrap: wrap;
-  color: var(--color-muted);
-  font-weight: 600;
+  color: #646669;
+  font-size: 0.74rem;
+  font-weight: 400;
+}
+
+body.typing-mode .practice-footer .btn {
+  color: #646669;
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  font-size: 0.74rem;
+  font-weight: 400;
 }
 
 .typing-panel + .modal {
