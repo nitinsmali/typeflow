@@ -22,6 +22,10 @@
         </nav>
 
         <div class="nav-actions">
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to light theme" aria-pressed="false">
+            <span class="theme-toggle-icon" aria-hidden="true">☼</span>
+            <span data-theme-label>Light</span>
+          </button>
           {% if session.get('user_id') %}
             <a class="btn btn-ghost" href="{{ url_for('main.progress_page') }}">Progress</a>
             <button class="btn btn-primary" type="button" data-logout-button>Log out</button>
