@@ -1235,6 +1235,313 @@ body.typing-mode .practice-footer .btn {
   font-family: "Courier New", Courier, monospace;
 }
 
+/* Shared dark workspace for every focused, non-home surface. */
+.practice-body,
+.auth-body,
+.progress-body,
+.library-body {
+  --workspace-ink: #d1d0c5;
+  --workspace-dim: #858783;
+  --workspace-line: rgba(209, 208, 197, 0.1);
+  --workspace-panel: #3a3c3f;
+  background: #323437;
+  color: var(--workspace-ink);
+  font-family: "Courier New", Courier, monospace;
+}
+
+.practice-body .site-header,
+.practice-body .site-footer,
+.auth-body .site-header,
+.auth-body .site-footer,
+.progress-body .site-header,
+.progress-body .site-footer,
+.library-body .site-header,
+.library-body .site-footer {
+  background: rgba(50, 52, 55, 0.94);
+  border-color: var(--workspace-line);
+}
+
+.practice-body .brand,
+.practice-body .nav-link,
+.practice-body .nav-actions .btn,
+.auth-body .brand,
+.auth-body .nav-link,
+.auth-body .nav-actions .btn,
+.progress-body .brand,
+.progress-body .nav-link,
+.progress-body .nav-actions .btn,
+.library-body .brand,
+.library-body .nav-link,
+.library-body .nav-actions .btn,
+.practice-body .footer-inner,
+.auth-body .footer-inner,
+.progress-body .footer-inner,
+.library-body .footer-inner {
+  color: var(--workspace-ink);
+}
+
+.practice-body .nav-link:hover,
+.practice-body .nav-link.active,
+.auth-body .nav-link:hover,
+.auth-body .nav-link.active,
+.progress-body .nav-link:hover,
+.progress-body .nav-link.active,
+.library-body .nav-link:hover,
+.library-body .nav-link.active,
+.practice-body .nav-actions .btn:hover,
+.auth-body .nav-actions .btn:hover,
+.progress-body .nav-actions .btn:hover,
+.library-body .nav-actions .btn:hover {
+  background: rgba(209, 208, 197, 0.08);
+}
+
+.practice-body .page-shell,
+.auth-body .page-shell,
+.progress-body .page-shell,
+.library-body .page-shell {
+  min-height: calc(100vh - 125px);
+  padding: 34px 0 54px;
+  background: #323437;
+}
+
+.practice-body .card,
+.auth-body .card,
+.progress-body .card,
+.library-body .card {
+  background: var(--workspace-panel);
+  border-color: var(--workspace-line);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .14);
+}
+
+.practice-body .eyebrow,
+.auth-body .eyebrow,
+.progress-body .eyebrow,
+.library-body .eyebrow {
+  color: #e2b714;
+}
+
+.practice-body .eyebrow.muted,
+.auth-body .eyebrow.muted,
+.progress-body .eyebrow.muted,
+.library-body .eyebrow.muted,
+.practice-body .feature-card p,
+.auth-body .auth-copy p,
+.progress-body .history-item,
+.library-body .lesson-card p,
+.practice-body .result-summary {
+  color: var(--workspace-dim);
+}
+
+.practice-body .btn-primary,
+.auth-body .btn-primary,
+.progress-body .btn-primary,
+.library-body .btn-primary {
+  background: #e2b714;
+  color: #323437;
+  box-shadow: 0 12px 28px rgba(226, 183, 20, .15);
+}
+
+.practice-body .btn-primary:hover,
+.auth-body .btn-primary:hover,
+.progress-body .btn-primary:hover,
+.library-body .btn-primary:hover {
+  background: #f0c92c;
+}
+
+.practice-body .btn-secondary,
+.practice-body .btn-ghost,
+.auth-body .btn-secondary,
+.auth-body .btn-ghost,
+.progress-body .btn-secondary,
+.progress-body .btn-ghost,
+.library-body .btn-secondary,
+.library-body .btn-ghost {
+  background: transparent;
+  color: var(--workspace-ink);
+  border-color: var(--workspace-line);
+}
+
+.practice-body .setup-panel {
+  max-width: 900px;
+  padding: 28px;
+  background: var(--workspace-panel);
+}
+
+.practice-body .setup-panel .panel-header h2,
+.auth-body .auth-copy h1,
+.progress-body .section-heading h1,
+.library-body .section-heading h1,
+.practice-body .panel-header h2 {
+  color: var(--workspace-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -.04em;
+}
+
+.practice-body .field-group label,
+.practice-body .segment,
+.auth-body .field-group label,
+.auth-body .auth-tab,
+.progress-body .panel-header h2,
+.library-body .lesson-card h2 {
+  color: var(--workspace-ink);
+}
+
+.practice-body .segment,
+.auth-body .auth-tab,
+.auth-body input,
+.practice-body input,
+.practice-body textarea {
+  background: #323437;
+  border-color: var(--workspace-line);
+}
+
+.practice-body .segment.active,
+.auth-body .auth-tab.active {
+  background: rgba(226, 183, 20, .12);
+  color: #e2b714;
+  border-color: rgba(226, 183, 20, .55);
+}
+
+.practice-body .result-stat {
+  background: #323437;
+  border: 1px solid var(--workspace-line);
+}
+
+.practice-body .result-stat span,
+.progress-body .stat-card span,
+.practice-body .result-stat strong,
+.progress-body .stat-card strong {
+  color: var(--workspace-ink);
+}
+
+.practice-body .result-stat strong,
+.progress-body .stat-card strong {
+  color: #e2b714;
+}
+
+.practice-body .modal-card {
+  background: var(--workspace-panel);
+  border-color: var(--workspace-line);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .38);
+}
+
+.practice-body .modal-header h3,
+.practice-body .modal-close,
+.auth-body .auth-tab.active,
+.progress-body .history-item strong,
+.library-body .lesson-footer {
+  color: var(--workspace-ink);
+}
+
+.auth-body .auth-shell {
+  max-width: 900px;
+  margin: 28px auto 0;
+  padding: 30px;
+  gap: 48px;
+  background: #3a3c3f;
+  animation: workspace-rise .5s ease both;
+}
+
+.auth-body .auth-copy h1 {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+}
+
+.auth-body .auth-form-card {
+  padding: 24px;
+  background: #323437;
+  border-color: var(--workspace-line);
+  border-radius: 16px;
+}
+
+.auth-body .auth-list span,
+.auth-body input {
+  color: var(--workspace-ink);
+  border-color: var(--workspace-line);
+  background: rgba(209, 208, 197, .04);
+}
+
+.auth-body input::placeholder {
+  color: #646669;
+}
+
+.auth-body input:focus {
+  border-color: rgba(226, 183, 20, .6);
+  box-shadow: 0 0 0 4px rgba(226, 183, 20, .08);
+}
+
+.auth-body .auth-form-card {
+  animation: workspace-rise .5s .08s ease both;
+}
+
+@keyframes workspace-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.progress-body .section-heading,
+.library-body .section-heading {
+  margin-bottom: 24px;
+}
+
+.progress-body .summary-grid {
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.progress-body .stat-card,
+.progress-body .progress-panel,
+.library-body .lesson-card {
+  padding: 22px;
+}
+
+.progress-body .history-item {
+  border-color: var(--workspace-line);
+  background: rgba(209, 208, 197, .03);
+}
+
+.library-body .lesson-grid {
+  gap: 14px;
+}
+
+.library-body .pill {
+  background: rgba(226, 183, 20, .12);
+  color: #e2b714;
+}
+
+.library-body .pill.neutral {
+  background: rgba(209, 208, 197, .08);
+  color: var(--workspace-dim);
+}
+
+@media (max-width: 700px) {
+  .practice-body .page-shell,
+  .auth-body .page-shell,
+  .progress-body .page-shell,
+  .library-body .page-shell {
+    padding-top: 22px;
+  }
+
+  .practice-body .setup-panel,
+  .auth-body .auth-shell,
+  .progress-body .stat-card,
+  .progress-body .progress-panel,
+  .library-body .lesson-card {
+    padding: 18px;
+  }
+
+  .auth-body .auth-shell {
+    gap: 28px;
+    margin-top: 0;
+  }
+}
+
 .home-body .site-header,
 .home-body .site-footer {
   background: rgba(50, 52, 55, 0.94);
