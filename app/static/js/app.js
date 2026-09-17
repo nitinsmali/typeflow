@@ -472,7 +472,7 @@ function initPracticeFlow() {
     state.prompt = getPromptText();
     state.userInput = "";
     state.completed = false;
-    state.startTime = Date.now();
+    state.startTime = null;
     state.currentResult = null;
 
     typingInput.disabled = false;
@@ -486,8 +486,10 @@ function initPracticeFlow() {
       if (!state.completed) {
         updateMetrics();
         if (
-          state.userInput.length >= state.prompt.length ||
-          (Date.now() - state.startTime) / 1000 >= state.duration
+          state.startTime && (
+            state.userInput.length >= state.prompt.length ||
+            (Date.now() - state.startTime) / 1000 >= state.duration
+          )
         ) {
           endSession();
         }
@@ -552,6 +554,9 @@ function initPracticeFlow() {
     if (state.completed) return;
 
     const nextValue = event.target.value.slice(0, state.prompt.length);
+    if (!state.startTime && nextValue.length > 0) {
+      state.startTime = Date.now();
+    }
     state.userInput = nextValue;
     event.target.value = nextValue;
     renderPrompt();
