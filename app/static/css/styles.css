@@ -1520,6 +1520,104 @@ body.typing-mode .practice-footer .btn {
   color: var(--workspace-dim);
 }
 
+/* The live test is an open workspace, not a card around the text. */
+.practice-body .typing-panel {
+  width: min(1080px, calc(100% - 48px));
+  max-width: none;
+  margin: 0 auto;
+  padding: 30px 0 34px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.practice-body .typing-hero {
+  margin: 12px 0 18px;
+}
+
+.practice-body .typing-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 34px;
+  margin-bottom: 32px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--workspace-line);
+}
+
+.session-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 4px 10px;
+  border: 1px solid rgba(226, 183, 20, .35);
+  border-radius: 999px;
+  color: #e2b714;
+  font-size: .68rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.typing-hint {
+  color: #646669;
+  font-size: .72rem;
+}
+
+.practice-body .stats-row {
+  gap: 34px;
+  margin-bottom: 52px;
+}
+
+.practice-body .typing-surface {
+  min-height: 200px;
+  padding: 8px 0 0;
+}
+
+.practice-body .text-display {
+  max-width: 1040px;
+  height: 150px;
+  font-size: clamp(1.3rem, 2.1vw, 1.7rem);
+  line-height: 1.65;
+}
+
+.practice-body .practice-footer {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid var(--workspace-line);
+}
+
+.practice-body .mini-stats {
+  gap: 22px;
+}
+
+@media (max-width: 700px) {
+  .practice-body .typing-panel {
+    width: min(100% - 32px, 1080px);
+    padding-top: 22px;
+  }
+
+  .practice-body .typing-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .practice-body .stats-row {
+    gap: 22px;
+    margin-bottom: 38px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .practice-body .text-display {
+    height: 176px;
+    font-size: 1.2rem;
+  }
+}
+
 @media (max-width: 700px) {
   .practice-body .page-shell,
   .auth-body .page-shell,
