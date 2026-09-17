@@ -4,8 +4,8 @@
   <rect x="42" y="210" width="636" height="2" fill="#D1D0C5" fill-opacity=".1"/>
   <rect x="42" y="270" width="636" height="2" fill="#D1D0C5" fill-opacity=".1"/>
   <path d="M66 274L170 232L266 245L370 188L462 204L566 146L654 164" stroke="#65C18C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="370" cy="188" r="9" fill="#E2B714"/>
-  <circle cx="566" cy="146" r="9" fill="#E2B714"/>
+  <circle cx="370" cy="188" r="9" fill="#36C4E8"/>
+  <circle cx="566" cy="146" r="9" fill="#4AA8FF"/>
   <text x="42" y="58" fill="#858783" font-family="Courier New, monospace" font-size="14" letter-spacing="3">ACCURACY / 02</text>
   <text x="42" y="94" fill="#D1D0C5" font-family="Georgia, serif" font-size="28">Slow is smooth.</text>
 </svg>

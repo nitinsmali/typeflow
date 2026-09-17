@@ -2101,3 +2101,272 @@ body.typing-mode .practice-footer .btn {
     grid-template-columns: 1fr;
   }
 }
+
+/* Blue atmosphere: Azure actions, ocean surfaces, cyan interaction. */
+:root {
+  --azure-blue: #2f8fe8;
+  --ocean-blue: #183b63;
+  --sky-blue: #79c9f2;
+  --cyan-blue: #36c4e8;
+  --aqua-blue: #63d8d1;
+  --electric-blue: #4aa8ff;
+  --glacier-blue: #254c73;
+  --cloud-blue: #d8efff;
+  --arctic-blue: rgba(146, 211, 240, .18);
+  --lightning-blue: #93e7ff;
+}
+
+.home-body,
+.practice-body,
+.auth-body,
+.progress-body,
+.library-body {
+  --home-ink: #d8efff;
+  --home-dim: #8db1c9;
+  --home-line: rgba(146, 211, 240, .16);
+  --workspace-ink: #d8efff;
+  --workspace-dim: #8db1c9;
+  --workspace-line: rgba(146, 211, 240, .16);
+  --workspace-panel: #183b63;
+  background: #102b4b;
+  color: #d8efff;
+}
+
+.home-body .site-header,
+.home-body .site-footer,
+.practice-body .site-header,
+.practice-body .site-footer,
+.auth-body .site-header,
+.auth-body .site-footer,
+.progress-body .site-header,
+.progress-body .site-footer,
+.library-body .site-header,
+.library-body .site-footer {
+  background: rgba(16, 43, 75, .94);
+  border-color: var(--arctic-blue);
+}
+
+.home-body .page-shell,
+.practice-body .page-shell,
+.auth-body .page-shell,
+.progress-body .page-shell,
+.library-body .page-shell {
+  background: #102b4b;
+}
+
+.home-body .brand,
+.home-body .nav-link,
+.home-body .nav-actions .btn,
+.practice-body .brand,
+.practice-body .nav-link,
+.practice-body .nav-actions .btn,
+.auth-body .brand,
+.auth-body .nav-link,
+.auth-body .nav-actions .btn,
+.progress-body .brand,
+.progress-body .nav-link,
+.progress-body .nav-actions .btn,
+.library-body .brand,
+.library-body .nav-link,
+.library-body .nav-actions .btn,
+.home-body .footer-inner,
+.practice-body .footer-inner,
+.auth-body .footer-inner,
+.progress-body .footer-inner,
+.library-body .footer-inner {
+  color: var(--cloud-blue);
+}
+
+.home-body .nav-link:hover,
+.home-body .nav-link.active,
+.home-body .nav-actions .btn:hover,
+.practice-body .nav-link:hover,
+.practice-body .nav-link.active,
+.practice-body .nav-actions .btn:hover,
+.auth-body .nav-link:hover,
+.auth-body .nav-link.active,
+.auth-body .nav-actions .btn:hover,
+.progress-body .nav-link:hover,
+.progress-body .nav-link.active,
+.progress-body .nav-actions .btn:hover,
+.library-body .nav-link:hover,
+.library-body .nav-link.active,
+.library-body .nav-actions .btn:hover {
+  background: rgba(74, 168, 255, .14);
+}
+
+.home-body .eyebrow,
+.practice-body .eyebrow,
+.auth-body .eyebrow,
+.progress-body .eyebrow,
+.library-body .eyebrow,
+.home-body .feature-index,
+.method-number,
+.session-chip,
+.visual-cta {
+  color: var(--cyan-blue);
+}
+
+.home-body .btn-primary,
+.practice-body .btn-primary,
+.auth-body .btn-primary,
+.progress-body .btn-primary,
+.library-body .btn-primary {
+  background: linear-gradient(135deg, var(--azure-blue), var(--electric-blue));
+  color: #f3fbff;
+  box-shadow: 0 12px 28px rgba(47, 143, 232, .24), 0 0 22px rgba(54, 196, 232, .1);
+}
+
+.home-body .btn-primary:hover,
+.practice-body .btn-primary:hover,
+.auth-body .btn-primary:hover,
+.progress-body .btn-primary:hover,
+.library-body .btn-primary:hover {
+  background: linear-gradient(135deg, var(--electric-blue), var(--cyan-blue));
+}
+
+.home-body .btn-ghost,
+.home-body .btn-secondary,
+.practice-body .btn-ghost,
+.practice-body .btn-secondary,
+.auth-body .btn-ghost,
+.auth-body .btn-secondary,
+.progress-body .btn-ghost,
+.progress-body .btn-secondary,
+.library-body .btn-ghost,
+.library-body .btn-secondary {
+  color: var(--cloud-blue);
+  border-color: var(--arctic-blue);
+}
+
+.home-body .hero-visual,
+.home-body .insight-card {
+  background: #163b63;
+  border-color: var(--arctic-blue);
+  box-shadow: 0 18px 42px rgba(4, 26, 51, .24);
+}
+
+.home-body .hero::before {
+  background: linear-gradient(90deg, transparent, rgba(147, 231, 255, .65), transparent);
+}
+
+.home-body .tagline span::after {
+  background: linear-gradient(90deg, var(--cyan-blue), var(--sky-blue));
+}
+
+.home-body .choice-card,
+.practice-body .segment,
+.auth-body .auth-tab,
+.practice-body .result-stat {
+  background: #163b63;
+  border-color: var(--arctic-blue);
+}
+
+.home-body .choice-card:hover,
+.home-body .choice-card.active,
+.practice-body .segment.active,
+.auth-body .auth-tab.active {
+  background: rgba(54, 196, 232, .14);
+  border-color: rgba(74, 168, 255, .72);
+  color: var(--cloud-blue);
+}
+
+.practice-body .timer-ring,
+.practice-body .result-stat strong,
+.progress-body .stat-card strong {
+  color: var(--cyan-blue);
+}
+
+.practice-body .char.current {
+  box-shadow: inset 3px 0 0 var(--lightning-blue);
+  color: var(--cloud-blue);
+}
+
+.practice-body .char.correct {
+  color: var(--cloud-blue);
+}
+
+.practice-body .char.incorrect {
+  color: #ff8b9b;
+}
+
+.home-body .modal-card,
+.practice-body .modal-card,
+.auth-body .auth-shell,
+.auth-body .auth-form-card {
+  background: #183b63;
+  border-color: var(--arctic-blue);
+}
+
+.home-body .modal-backdrop,
+.practice-body .modal-backdrop {
+  background: rgba(4, 22, 42, .78);
+}
+
+.auth-body input,
+.practice-body input,
+.practice-body textarea {
+  background: #102b4b;
+  border-color: var(--arctic-blue);
+  color: var(--cloud-blue);
+}
+
+.auth-body input:focus {
+  border-color: var(--electric-blue);
+  box-shadow: 0 0 0 4px rgba(54, 196, 232, .12), 0 0 18px rgba(74, 168, 255, .12);
+}
+
+.home-body .status-dot {
+  background: var(--aqua-blue);
+  box-shadow: 0 0 0 4px rgba(99, 216, 209, .12), 0 0 14px rgba(99, 216, 209, .25);
+}
+
+.home-body .method-row:hover,
+.progress-body .history-item {
+  background: rgba(121, 201, 242, .05);
+}
+
+.home-body .insight-card:hover {
+  border-color: rgba(74, 168, 255, .72);
+  box-shadow: 0 18px 42px rgba(4, 26, 51, .35), 0 0 24px rgba(54, 196, 232, .1);
+}
+
+/* Typing mode adds a body class at runtime; keep its stronger selectors in the blue system. */
+body.typing-mode {
+  background: #102b4b;
+  color: var(--cloud-blue);
+}
+
+body.typing-mode .site-header,
+body.typing-mode .site-footer,
+body.typing-mode .page-shell {
+  background: #102b4b;
+  border-color: var(--arctic-blue);
+}
+
+body.typing-mode .brand,
+body.typing-mode .nav-link,
+body.typing-mode .nav-actions .btn,
+body.typing-mode .footer-inner {
+  color: var(--cloud-blue);
+}
+
+body.typing-mode .nav-link:hover,
+body.typing-mode .nav-link.active,
+body.typing-mode .nav-actions .btn:hover {
+  background: rgba(74, 168, 255, .14);
+}
+
+body.typing-mode .typing-hero h1,
+body.typing-mode .metric-stat strong,
+body.typing-mode .char.correct {
+  color: var(--cloud-blue);
+}
+
+body.typing-mode .typing-hero .eyebrow,
+body.typing-mode .metric-stat span,
+body.typing-mode .typing-hint,
+body.typing-mode .mini-stats,
+body.typing-mode .timer-ring small {
+  color: var(--workspace-dim);
+}
