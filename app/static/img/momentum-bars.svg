@@ -1,0 +1,11 @@
+<svg width="720" height="420" viewBox="0 0 720 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="420" rx="28" fill="#292B2D"/>
+  <rect x="56" y="280" width="88" height="70" rx="8" fill="#57595A"/>
+  <rect x="168" y="232" width="88" height="118" rx="8" fill="#6D6F6D"/>
+  <rect x="280" y="182" width="88" height="168" rx="8" fill="#858783"/>
+  <rect x="392" y="132" width="88" height="218" rx="8" fill="#65C18C"/>
+  <rect x="504" y="82" width="88" height="268" rx="8" fill="#E2B714"/>
+  <path d="M56 350H650" stroke="#D1D0C5" stroke-opacity=".2"/>
+  <text x="56" y="58" fill="#858783" font-family="Courier New, monospace" font-size="14" letter-spacing="3">MOMENTUM / 03</text>
+  <text x="56" y="94" fill="#D1D0C5" font-family="Georgia, serif" font-size="28">Let consistency compound.</text>
+</svg>

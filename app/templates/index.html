@@ -13,13 +13,16 @@
       </p>
       <p class="tagline">Type better. Type faster. <span>Flow naturally.</span></p>
       <div class="cta-row">
-        <button class="btn btn-primary btn-large" type="button" id="openStartModal">Get started</button>
+        <button class="btn btn-primary btn-large" type="button" id="openStartModal" data-open-start>Get started</button>
         <a class="text-link" href="#why-typeflow">See how it works <span aria-hidden="true">↓</span></a>
       </div>
     </div>
 
     <div class="hero-visual">
-      <img src="{{ url_for('static', filename='img/typeflow-hero.svg') }}" alt="Illustration of a bright keyboard ready for practice" />
+      <button class="home-visual-button" type="button" data-open-start aria-label="Open a typing lesson">
+        <img src="{{ url_for('static', filename='img/rhythm-grid.svg') }}" alt="A rising rhythm line representing steady typing practice" />
+        <span class="visual-cta">Open a session <span aria-hidden="true">↗</span></span>
+      </button>
     </div>
   </section>
 
@@ -39,6 +42,48 @@
       <h2>Stay in the flow</h2>
       <p>No account required. Choose a lesson, settle in, and let your hands learn.</p>
     </article>
+  </section>
+
+  <section class="home-section method-section" aria-labelledby="method-heading">
+    <div class="section-intro">
+      <p class="eyebrow">A better practice loop</p>
+      <h2 id="method-heading">Build speed without chasing it.</h2>
+      <p>Good typing is a quiet combination of accuracy, rhythm, and enough repetition for the work to feel natural.</p>
+    </div>
+    <div class="method-list">
+      <article class="method-row">
+        <span class="method-number">01</span>
+        <div><h3>Warm up slowly</h3><p>Start with easy words and let your hands find the home row before asking for speed.</p></div>
+        <span class="method-time">01 min</span>
+      </article>
+      <article class="method-row">
+        <span class="method-number">02</span>
+        <div><h3>Protect accuracy</h3><p>Pause when errors pile up. Clean keystrokes teach your fingers more than frantic ones.</p></div>
+        <span class="method-time">02 min</span>
+      </article>
+      <article class="method-row">
+        <span class="method-number">03</span>
+        <div><h3>Stretch the edge</h3><p>Move to focused or challenge lessons once your rhythm can carry the extra complexity.</p></div>
+        <span class="method-time">05 min</span>
+      </article>
+    </div>
+  </section>
+
+  <section class="home-section insight-section" aria-labelledby="insight-heading">
+    <div class="section-intro section-intro-wide">
+      <p class="eyebrow">Three useful signals</p>
+      <h2 id="insight-heading">Practice with a little more intention.</h2>
+    </div>
+    <div class="insight-grid">
+      <button class="insight-card" type="button" data-open-start>
+        <img src="{{ url_for('static', filename='img/accuracy-lines.svg') }}" alt="Rising accuracy line illustration" />
+        <span class="insight-copy"><strong>Accuracy first</strong><small>Fewer corrections create faster fingers later.</small></span>
+      </button>
+      <button class="insight-card" type="button" data-open-start>
+        <img src="{{ url_for('static', filename='img/momentum-bars.svg') }}" alt="Rising practice momentum bars illustration" />
+        <span class="insight-copy"><strong>Make it repeatable</strong><small>A short daily session beats a rare marathon.</small></span>
+      </button>
+    </div>
   </section>
 
   <p class="guest-note"><span class="status-dot"></span>No account needed. Just start typing.</p>

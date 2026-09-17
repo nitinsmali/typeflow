@@ -8,11 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initStartModal() {
   const modal = document.getElementById("startModal");
-  const openButton = document.getElementById("openStartModal");
+  const openButtons = document.querySelectorAll("[data-open-start]");
   const startButton = document.getElementById("startChoiceButton");
   const timedChoices = document.getElementById("timedChoices");
   const pageChoices = document.getElementById("pageChoices");
-  if (!modal || !openButton || !startButton) return;
+  if (!modal || !openButtons.length || !startButton) return;
 
   const closeModal = () => modal.classList.add("hidden");
   const choose = (button) => {
@@ -38,7 +38,7 @@ function initStartModal() {
     startButton.href = `/practice?mode=${mode}&value=${value}&difficulty=${difficulty}`;
   };
 
-  openButton.addEventListener("click", () => modal.classList.remove("hidden"));
+  openButtons.forEach((button) => button.addEventListener("click", () => modal.classList.remove("hidden")));
   modal.querySelectorAll("[data-close-start]").forEach((element) => element.addEventListener("click", closeModal));
   modal.querySelectorAll("[data-start-choice]").forEach((button) => {
     button.addEventListener("click", () => choose(button));
