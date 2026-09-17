@@ -1,34 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-  initTheme();
   initStartModal();
   initAuthFlow();
   initLogout();
   initPracticeFlow();
   initProgressPage();
 });
-
-function initTheme() {
-  const toggle = document.querySelector("[data-theme-toggle]");
-  const label = document.querySelector("[data-theme-label]");
-  const savedTheme = localStorage.getItem("typeflow-theme");
-
-  const applyTheme = (theme) => {
-    const isLight = theme === "light";
-    document.body.dataset.theme = isLight ? "light" : "dark";
-    if (toggle) {
-      toggle.setAttribute("aria-pressed", String(isLight));
-      toggle.setAttribute("aria-label", isLight ? "Switch to dark theme" : "Switch to light theme");
-    }
-    if (label) label.textContent = isLight ? "Dark" : "Light";
-  };
-
-  applyTheme(savedTheme || "dark");
-  toggle?.addEventListener("click", () => {
-    const nextTheme = document.body.dataset.theme === "light" ? "dark" : "light";
-    localStorage.setItem("typeflow-theme", nextTheme);
-    applyTheme(nextTheme);
-  });
-}
 
 function initStartModal() {
   const modal = document.getElementById("startModal");
