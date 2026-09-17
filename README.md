@@ -1,22 +1,24 @@
 # TypeFlow
 
-TypeFlow is a simple typing-practice website built with Flask, SQLAlchemy, vanilla JavaScript, and CSS.
+> Type better. Type faster. Flow naturally.
 
-**Tagline:** Type better. Type faster. Flow naturally.
+TypeFlow is a focused typing-practice web app for building speed through accuracy, rhythm, and short repeatable sessions. It uses a quiet dark workspace, live feedback, and guided practice content instead of a noisy dashboard.
 
-## Features
+## What it includes
 
-- Timed practice: 1, 2, or 5 minutes
-- Page practice: 1 or 2 pages
+- Timed sessions for 1, 2, or 5 minutes
+- Page-based practice for 1 or 2 pages
 - Easy, Focused, and Challenge difficulty levels
-- Live WPM, accuracy, errors, characters, and progress
-- Guest practice without required registration
-- Optional account login and progress history
-- Responsive interface with custom TypeFlow branding
+- WPM, characters per minute, accuracy, errors, and progress feedback
+- Timer that begins with the first keystroke
+- Guest practice with no account required
+- Optional login, signup, and saved progress history
+- Responsive home, practice, auth, library, and progress views
+- Custom SVG visuals that match the typing workspace aesthetic
 
-## Run locally
+## Quick start
 
-From the project root:
+### Windows PowerShell
 
 ```powershell
 python -m venv venv
@@ -26,9 +28,7 @@ Copy-Item .env.example .env
 python run.py
 ```
 
-Open `http://127.0.0.1:5000/`.
-
-On macOS or Linux:
+### macOS or Linux
 
 ```bash
 python3 -m venv venv
@@ -38,66 +38,66 @@ cp .env.example .env
 python run.py
 ```
 
-The local SQLite database is created automatically on first launch. Stop the app with `Ctrl+C`.
+Open [http://127.0.0.1:5000](http://127.0.0.1:5000). The local SQLite database is created automatically on first launch.
 
-## Local configuration
+## Configuration
 
-`.env.example` contains placeholder values:
+Copy `.env.example` to `.env` and set values for local development:
 
 ```dotenv
 SECRET_KEY=replace-with-a-long-random-value
 DATABASE_URL=sqlite:///instance/typeflow.db
 ```
 
-Keep `.env`, database files, passwords, tokens, and other private values out of Git. Never publish real credentials in documentation, screenshots, issues, or pull requests.
+`.env`, SQLite files, virtual environments, caches, and Python bytecode are ignored by Git. Never commit credentials or generated local data.
 
-## Project structure
+## Routes
 
-- `app/` - Flask application, routes, models, templates, and static assets
-- `app/data.py` - practice text and lesson data
-- `app/static/img/` - TypeFlow illustrations and favicon
-- `instance/` - local SQLite data
-- `config.py` - application configuration
-- `requirements.txt` - Python dependencies
-- `run.py` - local entry point
+| Route | Purpose |
+| --- | --- |
+| `/` | Home page, practice guidance, and lesson picker |
+| `/practice` | Timed or page-based typing practice |
+| `/library` | Available lessons |
+| `/auth` | Login and signup |
+| `/progress` | Saved results for signed-in users |
 
-## Main routes
+## Project layout
 
-- `/` - landing page
-- `/practice` - typing practice
-- `/library` - lesson library
-- `/auth` - optional login and signup
-- `/progress` - signed-in user progress
+```text
+app/
+	data.py             Practice text and lesson seed data
+	models.py           SQLAlchemy models
+	routes.py           Pages and JSON endpoints
+	templates/          Jinja page templates
+	static/
+		css/              Shared visual system
+		js/               Client-side interactions and typing logic
+		img/              Brand and practice illustrations
+config.py             Environment and database configuration
+requirements.txt      Python dependencies
+run.py                Local Flask entry point
+```
 
-## Development checks
+## Checks
 
-Run these checks before submitting changes:
+Run these before opening a pull request:
 
 ```powershell
 python -m py_compile run.py config.py app/routes.py
-node --check app/static/js/app.js
 git diff --check
 ```
 
-Keep changes small and focused. Test the complete flow: choose a lesson, type, finish the session, review results, try again, and return home.
+If Node.js is installed, also validate the browser script:
 
-## Current limitations
+```powershell
+node --check app/static/js/app.js
+```
 
-- No automated test suite yet
-- Database schema migrations are not configured
-- Guest results are not saved to an account
-- Account recovery and email verification are not included
-- Authentication still needs additional hardening before public use
+For a complete manual check, choose a lesson, confirm the timer waits for the first character, finish a session, review results, try again, and return home.
 
-## Recommended future improvements
+## Notes
 
-1. Add tests for lesson selection, typing metrics, authentication, and result saving.
-2. Add database migrations and improve account security.
-3. Improve keyboard accessibility and mobile layouts.
-4. Add personal bests and saved progress.
-5. Expand lesson content while keeping the interface simple.
-6. Add continuous integration checks for every pull request.
-
-## Contributing
-
-Create a focused branch, make the smallest useful change, run the checks above, and open a pull request with a clear summary. Do not include confidential data or generated local database files.
+- Guest results are not attached to an account.
+- Database migrations are not configured yet.
+- Account recovery and email verification are outside the current scope.
+- Authentication should receive additional hardening before public deployment.
